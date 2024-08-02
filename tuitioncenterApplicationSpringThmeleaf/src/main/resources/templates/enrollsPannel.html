@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-2 px-0 fixed-top" id="left" style="height: 700px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+
+            <div class="list-group w-100">
+                <a href="/" class="list-group-item active">Dashboard</a>
+                <div class="space" style="height: 30px"></div>
+                <a href="/" class="list-group-item">BacHome</a>
+            </div>
+
+        </aside>
+        <main class="col-10 invisible">
+            <!--hidden spacer-->
+        </main>
+        <main class="col offset-2 h-100">
+            <div class="row bg-light">
+                <div class="col-12 py-4">
+                    TuitionCentreApp
+                </div>
+            </div>
+            <div class="row bg-white">
+                <div class="container col-12 py-4">
+                    Currently Enrolls Available
+                    <div>
+                        <div class="container py-4" style="margin-left: 750px"><button class="btn btn-secondary text-white btn-small"><a href="/addEnrollPage" style="color: white">Add newEnrollment</a></button></div>
+                        <table class="table table-stripped text-center table-hover" style="font-size: 12px">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID#</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Course Taken</th>
+                                <th scope="col">EnrollFrom</th>
+                                <th scope="col">UpTo</th>
+                                <th scope="col">Description</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="enroll :${enrollment}">
+                                <td th:text="${enroll.id}"></td>
+                                <td th:text="${enroll.name}"></td>
+                                <td th:text="${enroll.address}"></td>
+                                <td th:text="${enroll.coursetaken}"></td>
+                                <td th:text="${enroll.enrollfrom}"></td>
+                                <td th:text="${enroll.upto}"></td>
+                                <td th:text="${enroll.description}"></td>
+                                <td>
+                                    <a th:href="@{/editEnroll/{id}(id=${enroll.id})}" class="btn btn-warning bnt-sm">Edit</a>|
+                                    <a th:href="@{/deleteEnrollment/{id}(id=${enroll.id})}" class="btn btn-danger bnt-sm">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+

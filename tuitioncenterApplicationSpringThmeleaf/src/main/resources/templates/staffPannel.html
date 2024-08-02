@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Staffs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-2 px-0 fixed-top" id="left" style="height: 700px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+
+            <div class="list-group w-100">
+                <a href="/" class="list-group-item active">Dashboard</a>
+                <div class="space" style="height: 30px"></div>
+                <a th:href="@{/}" class="list-group-item">BacHome</a>
+            </div>
+
+        </aside>
+        <main class="col-10 invisible">
+            <!--hidden spacer-->
+        </main>
+        <main class="col offset-2 h-100">
+            <div class="row bg-light">
+                <div class="col-12 py-4">
+                    TuitionCentreApp
+                </div>
+            </div>
+            <div class="row bg-white">
+                <div class="container col-12 py-4">
+                    Currently Staffs Available
+                    <div>
+                        <div class="container py-4" style="margin-left: 750px"><button class="btn btn-secondary text-white btn-small"><a th:href="@{/addStaffPage}" style="color: white">Add newStaff</a></button></div>
+                        <table class="table table-stripped text-cente">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Cetegory</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Phone</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="s :${staff}">
+                                <td th:text="${s.id}"></td>
+                                <td th:text="${s.fullname}"></td>
+                                <td th:text="${s.category}"></td>
+                                <td th:text="${s.email}"></td>
+                                <td th:text="${s.address}"></td>
+                                <td th:text="${s.phone}"></td>
+                                <td>
+                                    <a th:href="@{/editStaff/{id}(id=${s.id})}" class="btn btn-warning bnt-sm">Edit</a>|
+                                    <a th:href="@{/deleteStaff/{id}(id=${s.id})}" class="btn btn-danger bnt-sm">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
